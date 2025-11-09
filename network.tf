@@ -1,5 +1,5 @@
 resource "aws_vpc" "base" {
-  cidr_block = "192.168.0.0/16"
+  cidr_block = var.vpc_cidr
   tags = {
     Name = "from-tf"
     Env  = "Dev"
@@ -8,8 +8,8 @@ resource "aws_vpc" "base" {
 }
 resource "aws_subnet" "web" {
   vpc_id            = aws_vpc.base.id
-  availability_zone = "ap-south-1a"
-  cidr_block        = "192.168.0.0/24"
+  availability_zone = var.web_subnet_az
+  cidr_block        = var.web_subnet_cidr
   tags = {
     Name = "web"
     Env  = "Dev"
@@ -19,8 +19,8 @@ resource "aws_subnet" "web" {
 }
 resource "aws_subnet" "app" {
   vpc_id            = aws_vpc.base.id
-  availability_zone = "ap-south-1a"
-  cidr_block        = "192.168.1.0/24"
+  availability_zone = var.app_subnet_az
+  cidr_block        = var.app_subnet_cidr
   tags = {
     Name = "app"
     Env  = "Dev"
@@ -30,8 +30,8 @@ resource "aws_subnet" "app" {
 }
 resource "aws_subnet" "db" {
   vpc_id            = aws_vpc.base.id
-  availability_zone = "ap-south-1a"
-  cidr_block        = "192.168.2.0/24"
+  availability_zone =var.db_subnet_az
+  cidr_block        =var.db_subnet_cidr
   tags = {
     Name = "db"
     Env  = "Dev"
