@@ -42,9 +42,7 @@ variable "private_subnet" {
   description = "private subnet"
 
 }
-variable "vpc_id" {
-  type = string
-}
+
 variable "security_group" {
     type = object({
       name = string

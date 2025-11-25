@@ -59,3 +59,32 @@ private_subnet = [{
   }
   }
 ]
+security_group = {
+  name = "ntier"
+  tags = {
+    Name ="ntier"
+    Env = "Dev"
+
+  }
+}
+ingress_rules = [ {
+  cidr_ipv4 = "0.0.0.0/0"
+  ip_protocol = "tcp"
+  from_port = 22
+  to_port = 22
+},
+{
+  cidr_ipv4 = "0.0.0.0/0"
+  ip_protocol = "tcp"
+  from_port = 80
+  to_port = 80
+},{
+  cidr_ipv4 = "0.0.0.0/0"
+  ip_protocol = "tcp"
+  from_port = 443
+  to_port = 443
+} ]
+egress_rules = [ {
+  ip_protocol = "-1"
+  cidr_ipv4 = "0.0.0.0/0"
+} ]
