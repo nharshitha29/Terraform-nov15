@@ -1,45 +1,80 @@
-variable "vpc_cidr" {
-    type = string
-    description = "vpc_cidr block"
-    default = "192.168.0.0/16"
-  
+variable "region" {
+  type        = string
+  default     = "ap-south-1"
+  description = "region information"
+
 }
-variable "web_subnet_cidr" {
-    type = string
-    description = "web subnet cidr block"
-    default = "192.168.0.0/24"
-  
+
+variable "vpc_info" {
+  type = object({
+    cidr = string
+    tags = map(string)
+  })
+
+  default = {
+    cidr = "192.168.0.0/16"
+    tags = {
+      Name = "from-tf"
+      Env  = "Dev"
+    }
+  }
+  description = "vpc information"
 }
-variable "web_subnet_az" {
-    type = string
-    description = "web subnet availability zone"
-    default = "ap-south-1a"
-  
+variable "web_subnet_info" {
+  type = object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  })
+  default = {
+    az   = "ap-south-1a"
+    cidr = "192.168.0.0/24"
+    tags = {
+      Name = "web"
+      Env  = "Dev"
+
+    }
+
+  }
+  description = "web subnet information"
 }
-variable "app_subnet_cidr" {
-    type = string
-    description = "app subnet cidr block"
-    default = "192.168.1.0/24"
-  
+variable "app_subnet_info" {
+  type = object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  })
+  default = {
+    az   = "ap-south-1a"
+    cidr = "192.168.1.0/24"
+    tags = {
+      Name = "app"
+      Env  = "Dev"
+
+    }
+
+  }
+  description = "app subnet information"
 }
-variable "app_subnet_az" {
-    type = string
-    description = "app subnet availability zone"
-    default = "ap-south-1a"
-  
+variable "db_subnet_info" {
+  type = object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  })
+  default = {
+    az   = "ap-south-1a"
+    cidr = "192.168.2.0/24"
+    tags = {
+      Name = "db"
+      Env  = "Dev"
+
+    }
+
+  }
+  description = "db subnet information"
 }
-variable "db_subnet_cidr" {
-    type = string
-    description = "db subnet cidr block"
-    default = "192.168.2.0/24"
-  
-}
-variable "db_subnet_az" {
-    type = string
-    description = "db subnet availability zone"
-    default = "ap-south-1a"
-  
-}
+
 variable "security_group" {
   type = object({
     name =  string
