@@ -20,81 +20,52 @@ variable "vpc_info" {
   }
   description = "vpc information"
 }
-variable "web_subnet_info" {
-  type = object({
+
+variable "public_subnet" {
+  type = list(object({
     cidr = string
     az   = string
     tags = map(string)
-  })
-  default = {
-    az   = "ap-south-1a"
-    cidr = "192.168.0.0/24"
-    tags = {
-      Name = "web"
-      Env  = "Dev"
+  }))
 
-    }
+  description = "public subnet"
 
-  }
-  description = "web subnet information"
 }
-variable "app_subnet_info" {
-  type = object({
+
+variable "private_subnet" {
+  type = list(object({
     cidr = string
     az   = string
     tags = map(string)
-  })
-  default = {
-    az   = "ap-south-1a"
-    cidr = "192.168.1.0/24"
-    tags = {
-      Name = "app"
-      Env  = "Dev"
+  }))
 
-    }
+  description = "private subnet"
 
-  }
-  description = "app subnet information"
 }
-variable "db_subnet_info" {
-  type = object({
-    cidr = string
-    az   = string
-    tags = map(string)
-  })
-  default = {
-    az   = "ap-south-1a"
-    cidr = "192.168.2.0/24"
-    tags = {
-      Name = "db"
-      Env  = "Dev"
-
-    }
-
-  }
-  description = "db subnet information"
+variable "vpc_id" {
+  type = string
 }
-
 variable "security_group" {
-  type = object({
-    name =  string
-    tags= map(string)
-  })
- 
+    type = object({
+      name = string
+      tags = map(string)
+    })
+  
 }
 variable "ingress_rules" {
-    type = list(object({
-     cidr_ipv4  = string
-     from_port = number
-     ip_protocol = string
-     to_port = number
-    }))
+  type = list(object({
+    cidr_ipv4  = string
+    from_port = number
+    ip_protocol =string
+    to_port = number
+  }))
   
 }
 variable "egress_rules" {
-    type = list(object({
-      cidr_ipv4 = string
-      ip_protocol = string
-    }))
+  type =list(object({
+    cidr_ipv4 = string
+    ip_protocol = string
+  }))
   
 }
+
