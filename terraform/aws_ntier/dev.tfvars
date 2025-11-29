@@ -88,3 +88,6 @@ egress_rules = [ {
   ip_protocol = "-1"
   cidr_ipv4 = "0.0.0.0/0"
 } ]
+instance_type = "t3.micro"
+key_name = "primary"
+key_path = "~/.ssh/id_ed25519.pub"

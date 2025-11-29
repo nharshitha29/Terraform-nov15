@@ -67,3 +67,18 @@ variable "egress_rules" {
   
 }
 
+
+
+variable "instance_type" {
+  type = string
+  default = "t3.micro"
+}
+variable "key_name" {
+    type = string
+  
+}
+variable "key_path" {
+  type    = string
+  default = "~/.ssh/id_ed25519.pub"
+
+}
