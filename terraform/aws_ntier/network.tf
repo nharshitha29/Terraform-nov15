@@ -145,9 +145,9 @@ data "aws_ami" "ubuntu_primary" {
 }
 
 resource "aws_instance" "base" {
-    count = length(var.public_subnet)
+    
     ami = data.aws_ami.ubuntu_primary.id
-    subnet_id = aws_subnet.public[count.index].id
+    subnet_id = aws_subnet.public[0].id
     associate_public_ip_address = true
     instance_type = var.instance_type
     key_name = aws_key_pair.primary.key_name
