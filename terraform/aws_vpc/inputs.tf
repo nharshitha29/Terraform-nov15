@@ -19,14 +19,21 @@ variable "secondary_region" {
   default = "us-east-1"
 }
 
-variable "primary_info" {
+variable "primary_vpc_info" {
   type = object({
     cidr = string
     tags = map(string)
     }
   )
 }
-variable "public_info" {
+variable "secondary_vpc_info" {
+  type = object({
+    cidr = string
+    tags = map(string)
+    }
+  )
+}
+variable "primary_public_info" {
   type = list(object({
     cidr = string
     az   = string
@@ -34,7 +41,24 @@ variable "public_info" {
   }))
   description = "subnet information"
 }
-variable "private_info" {
+variable "primary_private_info" {
+  type = list(object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  }))
+  description = "subnet information"
+}
+
+variable "secondary_public_info" {
+  type = list(object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  }))
+  description = "subnet information"
+}
+variable "secondary_private_info" {
   type = list(object({
     cidr = string
     az   = string
@@ -66,12 +90,38 @@ variable "egress_rules_info" {
   }))
 
 }
+variable "secondary_security_group_info" {
+  type = object({
+    name = string
+    tags = map(string)
+  })
 
-variable "instance_type" {
+}
+variable "secondary_ingress_rules_info" {
+  type = list(object({
+    cidr_ipv4   = string
+    from_port   = number
+    ip_protocol = string
+    to_port     = number
+  }))
+
+}
+variable "secondary_egress_rules_info" {
+  type = list(object({
+    cidr_ipv4   = string
+    ip_protocol = string
+  }))
+
+}
+
+variable "primary_instance_type" {
   type    = string
   default = "t3.micro"
 }
-
+variable "secondary_instance_type" {
+  type    = string
+  default = "t3.micro"
+}
 
 variable "ubuntu_ami_name_pattern" {
   type    = string

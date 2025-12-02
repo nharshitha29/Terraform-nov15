@@ -3,3 +3,7 @@ output "primary_web_url" {
 
 }
 
+output "secondary_web_url" {
+  value = format("http://%s", module.secondary_web.ip_address)
+
+}
