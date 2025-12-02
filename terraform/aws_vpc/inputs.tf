@@ -19,14 +19,52 @@ variable "secondary_region" {
   default = "us-east-1"
 }
 
-variable "primary_vpc_cidr" {
-  type    = string
-  default = "10.100.0.0/16"
+variable "primary_info" {
+  type = object({
+    cidr = string
+    tags = map(string)
+    }
+  )
+}
+variable "public_info" {
+  type = list(object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  }))
+  description = "subnet information"
+}
+variable "private_info" {
+  type = list(object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  }))
+  description = "subnet information"
 }
 
-variable "secondary_vpc_cidr" {
-  type    = string
-  default = "10.101.0.0/16"
+variable "security_group_info" {
+  type = object({
+    name = string
+    tags = map(string)
+  })
+
+}
+variable "ingress_rules_info" {
+  type = list(object({
+    cidr_ipv4   = string
+    from_port   = number
+    ip_protocol = string
+    to_port     = number
+  }))
+
+}
+variable "egress_rules_info" {
+  type = list(object({
+    cidr_ipv4   = string
+    ip_protocol = string
+  }))
+
 }
 
 variable "instance_type" {
@@ -34,10 +72,6 @@ variable "instance_type" {
   default = "t3.micro"
 }
 
-variable "security_group_name" {
-  type    = string
-  default = "my-security-group"
-}
 
 variable "ubuntu_ami_name_pattern" {
   type    = string
