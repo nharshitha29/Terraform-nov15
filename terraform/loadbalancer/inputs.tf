@@ -2,14 +2,14 @@ variable "region" {
   type = string
 
 }
-variable "aws_vpc" {
+variable "aws_vpc_info" {
   type = object({
     cidr_block = string
     tags       = map(string)
   })
 
 }
-variable "aws_subnet" {
+variable "aws_subnet_info" {
   type = list(object({
     cidr_block        = string
     availability_zone = string
@@ -17,7 +17,14 @@ variable "aws_subnet" {
   }))
 
 }
-variable "ingress" {
+variable "aws_security_group_info" {
+    type = object({
+      name = string
+      tags = map(string)
+    })
+   }
+
+variable "ingress_info" {
   type = list(object({
     cidr_ipv4   = string
     from_port   = number
@@ -26,6 +33,14 @@ variable "ingress" {
   }))
 
 }
+variable "egress_info" {
+    type = list(object({
+      ip_protocol = string
+      cidr_ipv4 = string
+    }))
+  
+}
+
 variable "instance_type" {
   type    = string
   default = "t3.micro"
