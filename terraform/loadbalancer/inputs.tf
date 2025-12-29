@@ -41,7 +41,7 @@ variable "egress_info" {
   
 }
 
-variable "instance_type" {
+variable "primary_instance_type" {
   type    = string
   default = "t3.micro"
 }
@@ -58,4 +58,13 @@ variable "build_id" {
   type    = string
   default = "1"
 
+}
+variable "ubuntu_ami_name_pattern" {
+  type    = string
+  default = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"
+}
+
+variable "canonical_owner_id" {
+  type    = string
+  default = "099720109477"
 }
