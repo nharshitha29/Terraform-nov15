@@ -48,8 +48,6 @@ ingress = [{
   cidr_ipv4   = "0.0.0.0/0"
 }]
 egress = {
-  from_port   = 0
-  to_port     = 0
   ip_protocol = "-1"
   cidr_ipv4   = "0.0.0.0/0"
 }
@@ -58,6 +56,6 @@ public_key = {
   public_key = "C:/Users/91798/.ssh/id_ed25519.pub"
 }
 instance = {
-  ami_id        = "ami-091138d0f0d41ff90"
   instance_type = "t3.micro"
+  username      = "ubuntu"
 }

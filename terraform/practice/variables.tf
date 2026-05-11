@@ -41,8 +41,6 @@ variable "ingress" {
 variable "egress" {
   type = object({
     cidr_ipv4   = string
-    from_port   = number
-    to_port     = number
     ip_protocol = string
   })
 
@@ -50,14 +48,14 @@ variable "egress" {
 variable "public_key" {
   type = object({
     key_name   = string
-    public_key = string
+    public_key = optional(string, "C:/Users/91798/.ssh/id_ed25519.pub")
   })
 
 }
 variable "instance" {
   type = object({
-    ami_id        = string
     instance_type = string
+    username      = string
   })
 
 }
