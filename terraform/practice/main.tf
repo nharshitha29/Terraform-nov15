@@ -2,8 +2,8 @@ resource "aws_vpc" "web" {
   cidr_block = var.aws_vpc.cidr_block
   tags       = var.aws_vpc.tags
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }
 resource "aws_subnet" "public" {
   count             = length(var.public_subnet)
@@ -12,8 +12,8 @@ resource "aws_subnet" "public" {
   availability_zone = var.public_subnet[count.index].availability_zone
   tags              = var.public_subnet[count.index].tags
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 
 }
 resource "aws_subnet" "private" {
@@ -23,8 +23,8 @@ resource "aws_subnet" "private" {
   availability_zone = var.private_subnet[count.index].availability_zone
   tags              = var.private_subnet[count.index].tags
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.web.id
@@ -32,8 +32,8 @@ resource "aws_internet_gateway" "ig" {
     Name = "ntier-igw"
   }
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 
 }
 resource "aws_route_table" "public_route" {
@@ -42,8 +42,8 @@ resource "aws_route_table" "public_route" {
     Name = "public-route"
   }
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }
 resource "aws_route_table" "private_route" {
   vpc_id = aws_vpc.web.id
@@ -51,8 +51,8 @@ resource "aws_route_table" "private_route" {
     Name = "private-route"
   }
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }
 resource "aws_route" "route_public" {
   route_table_id         = aws_route_table.public_route.id
@@ -79,8 +79,8 @@ resource "aws_security_group" "sg" {
     Name = "ntier-sg"
   }
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }
 resource "aws_vpc_security_group_ingress_rule" "ingress" {
   count             = length(var.ingress)
@@ -90,14 +90,14 @@ resource "aws_vpc_security_group_ingress_rule" "ingress" {
   ip_protocol       = var.ingress[count.index].ip_protocol
   cidr_ipv4         = var.ingress[count.index].cidr_ipv4
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }
 resource "aws_vpc_security_group_egress_rule" "egress" {
   security_group_id = aws_security_group.sg.id
   ip_protocol       = var.egress.ip_protocol
   cidr_ipv4         = var.egress.cidr_ipv4
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }

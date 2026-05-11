@@ -2,8 +2,8 @@ resource "aws_key_pair" "public_key" {
   key_name   = var.public_key.key_name
   public_key = file(var.public_key.public_key)
   lifecycle {
-  create_before_destroy = true
-}
+    create_before_destroy = true
+  }
 }
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -30,7 +30,7 @@ resource "aws_instance" "webservser" {
   tags = {
     Name = "ntier-web"
   }
-lifecycle {
-  create_before_destroy = true
-}
+  lifecycle {
+    create_before_destroy = true
+  }
 }
