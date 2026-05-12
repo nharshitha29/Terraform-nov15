@@ -56,3 +56,8 @@ variable "http_rule" {
 
 
 }
+variable "virtual_machine" {
+  type = object({
+    name = string
+  })
+}
