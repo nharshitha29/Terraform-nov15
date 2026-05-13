@@ -14,7 +14,7 @@ resource "azurerm_subnet" "subnets" {
   default_outbound_access_enabled = var.primary_subnets[count.index].is_public_sunbet
 }
 resource "azurerm_public_ip" "public" {
-  name                = var.public_key.name
+  name                = var.public_ip.name
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   allocation_method   = "Static"

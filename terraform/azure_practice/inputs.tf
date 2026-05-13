@@ -20,7 +20,7 @@ variable "primary_subnets" {
   }))
 
 }
-variable "public_key" {
+variable "public_ip" {
   type = object({
     name = string
   })
@@ -58,6 +58,22 @@ variable "http_rule" {
 }
 variable "virtual_machine" {
   type = object({
-    name = string
+    name           = string
+    size           = string
+    admin_username = string
   })
+}
+variable "public_key" {
+  type = object({
+    key_path = optional(string, "~/.ssh/id_ed25519.pub")
+  })
+}
+variable "image_refer" {
+  type = object({
+    publisher = string
+    sku       = string
+    version   = string
+    offer     = string
+  })
+
 }

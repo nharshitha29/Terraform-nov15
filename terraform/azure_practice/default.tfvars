@@ -16,9 +16,11 @@ primary_subnets = [{
     address_prefixes = "10.0.1.0/24"
     is_public_sunbet = false
 }]
-public_key = {
+
+public_ip = {
   name = "web-ip"
 }
+
 network_interface = {
   name = "ntier-web-interface"
 }
@@ -34,5 +36,19 @@ http_rule = {
   name                   = "openhttp"
   priority               = 250
   destination_port_range = "80"
+}
+virtual_machine = {
+  name           = "web-ntier"
+  size           = "Standard_D2als_v6"
+  admin_username = "Dell"
+}
+public_key = {
+  key_path = "C:/Users/91798/.ssh/id_ed25519.pub"
+}
+image_refer = {
+  publisher = "Canonical"
+  offer     = "ubuntu-24_04-lts"
+  sku       = "server"
+  version   = "latest"
 }
   
