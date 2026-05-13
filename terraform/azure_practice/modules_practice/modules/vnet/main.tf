@@ -5,6 +5,7 @@ resource "azurerm_virtual_network" "primary" {
   address_space       = [var.virtual_network_info.address_space]
 
 }
+
 resource "azurerm_subnet" "subnets" {
   count                           = length(var.primary_subnets)
   name                            = var.primary_subnets[count.index].name

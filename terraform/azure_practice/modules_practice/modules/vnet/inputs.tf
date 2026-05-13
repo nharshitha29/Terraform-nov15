@@ -4,6 +4,7 @@ variable "resource_info_name" {
   
 }
 
+
 variable "virtual_network_info" {
   type = object({
     name          = string
