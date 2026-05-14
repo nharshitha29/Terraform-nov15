@@ -38,6 +38,7 @@ module "primary_vm" {
   primary_location     = "Central India"
   network_interface_id = module.primary_ni.network_interface_id
   custom_data_info     = file("./cloud_init.sh")
+  build_id             = var.build_id
   virtual_machine = {
     admin_username = "Dell"
     size           = "Standard_D2als_v6"

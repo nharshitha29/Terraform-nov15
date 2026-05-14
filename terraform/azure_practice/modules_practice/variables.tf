@@ -44,3 +44,7 @@ variable "primary_security_rule" {
   }))
 
 }
+variable "build_id" {
+  type    = string
+  default = "1"
+}

@@ -37,3 +37,8 @@ variable "custom_data_info" {
     nullable = false
   
 }
+variable "build_id" {
+    type = string
+    default = "1"
+  
+}

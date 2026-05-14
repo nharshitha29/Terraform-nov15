@@ -21,5 +21,23 @@ resource "azurerm_linux_virtual_machine" "web" {
     sku       = var.image_refer.sku
     version   = var.image_refer.version
   }
+  
 
+}
+resource "null_resource" "base" {
+    triggers = {
+      build_id = var.build_id
+    }
+    provisioner "remote-exec" {
+    connection {
+      host = azurerm_linux_virtual_machine.web.public_ip_address 
+      private_key = file("C:/Users/91798/.ssh/id_ed25519")
+      user = "Dell"
+    }
+    inline = [ "sudo apt update",
+    "sudo apt install apache2 -y",
+    "sudo apt install unzip -y"]
+    
+  }
+  
 }
