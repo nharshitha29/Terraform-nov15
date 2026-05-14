@@ -37,6 +37,7 @@ module "primary_vm" {
   resource_info_name   = azurerm_resource_group.example.name
   primary_location     = "Central India"
   network_interface_id = module.primary_ni.network_interface_id
+  custom_data_info     = file("./cloud_init.sh")
   virtual_machine = {
     admin_username = "Dell"
     size           = "Standard_D2als_v6"

@@ -6,6 +6,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   network_interface_ids = [var.network_interface_id]
   size                  = var.virtual_machine.size
   admin_username        = var.virtual_machine.admin_username
+  custom_data = base64encode(var.custom_data_info)
   admin_ssh_key {
     username   = var.virtual_machine.admin_username
     public_key = file(var.public_key.key_path)

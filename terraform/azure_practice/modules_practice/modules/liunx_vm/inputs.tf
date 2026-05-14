@@ -32,3 +32,8 @@ variable "image_refer" {
   })
 
 }
+variable "custom_data_info" {
+    type = string
+    nullable = false
+  
+}
