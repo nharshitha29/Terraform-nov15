@@ -10,3 +10,6 @@ output "subnets_name" {
     value = azurerm_subnet.subnets[*].name
   
 }
+output "subnet_ids" {
+  value = azurerm_subnet.subnets[*].id
+}
