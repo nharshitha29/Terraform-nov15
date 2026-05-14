@@ -48,3 +48,38 @@ variable "build_id" {
   type    = string
   default = "1"
 }
+variable "primary_public_ip" {
+  type = object({
+    name = string
+  })
+
+}
+variable "primary_network_interface" {
+  type = object({
+    name = string
+  })
+
+}
+variable "primary_virtual_machine" {
+  type = object({
+    name           = string
+    size           = string
+    admin_username = string
+  })
+
+}
+variable "primary_public_key" {
+  type = object({
+    key_path = string
+  })
+
+}
+variable "primary_image_refer" {
+  type = object({
+    publisher = string
+    offer     = string
+    version   = string
+    sku       = string
+  })
+
+}

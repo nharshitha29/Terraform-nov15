@@ -47,3 +47,23 @@ primary_security_rule = [{
   }
 ]
 build_id = "1"
+primary_public_ip = {
+  name = "web-ip"
+}
+primary_network_interface = {
+  name = "web-ni"
+}
+primary_virtual_machine = {
+  admin_username = "Dell"
+  size           = "Standard_D2als_v6"
+  name           = "primary-vm"
+}
+primary_public_key = {
+  key_path = "C:/Users/91798/.ssh/id_ed25519.pub"
+}
+primary_image_refer = {
+  publisher = "Canonical"
+  offer     = "ubuntu-24_04-lts"
+  sku       = "server"
+  version   = "latest"
+}

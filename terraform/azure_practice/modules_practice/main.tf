@@ -23,13 +23,8 @@ module "primary_ni" {
   primary_location   = "Central India"
   subnet_id          = module.primary_vpc.subnet_ids[0]
   security_group_id  = module.primary_nsg.nsg_id
-  public_ip = {
-    name = "web-ip"
-
-  }
-  network_interface = {
-    name = "web-ni"
-  }
+  public_ip          = var.primary_public_ip
+  network_interface  = var.primary_network_interface
 
 }
 module "primary_vm" {
@@ -39,19 +34,8 @@ module "primary_vm" {
   network_interface_id = module.primary_ni.network_interface_id
   custom_data_info     = file("./cloud_init.sh")
   build_id             = var.build_id
-  virtual_machine = {
-    admin_username = "Dell"
-    size           = "Standard_D2als_v6"
-    name           = "primary-vm"
-  }
-  public_key = {
-    key_path = "C:/Users/91798/.ssh/id_ed25519.pub"
-  }
-  image_refer = {
-    publisher = "Canonical"
-    offer     = "ubuntu-24_04-lts"
-    sku       = "server"
-    version   = "latest"
-  }
+  virtual_machine      = var.primary_virtual_machine
+  public_key           = var.primary_public_key
+  image_refer          = var.primary_image_refer
 
 }
