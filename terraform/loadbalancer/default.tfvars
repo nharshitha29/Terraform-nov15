@@ -26,6 +26,14 @@ aws_subnet_info = [{
     Env  = "Dev"
   }
 }]
+aws_security_group_info = {
+  name = "from-sg"
+  tags = {
+    Name = "from-sg"
+    Env = "Dev"
+  }
+
+}
 ingress_info = [{
   cidr_ipv4   = "0.0.0.0/0"
   from_port   = 22
