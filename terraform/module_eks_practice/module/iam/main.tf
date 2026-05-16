@@ -12,11 +12,10 @@ resource "aws_iam_role" "cluster" {
         Principal = {
           Service = "eks.amazonaws.com"
         }
-      },
+      }
     ]
   })
 }
-
 resource "aws_iam_role_policy_attachment" "cluster_AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.cluster.name
