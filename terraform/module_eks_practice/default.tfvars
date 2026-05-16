@@ -48,3 +48,5 @@ max_size        = 3
 min_size        = 2
 max_unavailable = 1
 instance_types  = "t3.small"
+cluster_name    = "first-cluster"
+node_group_name = "first-nodegroup"

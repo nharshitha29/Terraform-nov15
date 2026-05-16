@@ -14,7 +14,7 @@ module "vpc" {
 module "primary_eks_cluster" {
   source            = "./module/eks"
   role_arn          = module.cluster_iam_role.cluster_arn
-  cluster_name      = "first-cluster"
+  cluster_name      = var.cluster_name
   public_subnet_id  = module.vpc.public_subnet_id
   private_subnet_id = module.vpc.private_subnet_id
   build_id          = var.build_id
@@ -24,8 +24,8 @@ module "primary_eks_cluster" {
 }
 module "primary_node_group" {
   source          = "./module/nodegroup"
-  node_group_name = "first-nodegroup"
-  cluster_name    = "first-cluster"
+  node_group_name = var.node_group_name
+  cluster_name    = var.cluster_name
   subnet_ids      = module.vpc.public_subnet_id
   node_arn        = module.cluster_iam_role.node_arn
   desired_size    = var.desired_size
