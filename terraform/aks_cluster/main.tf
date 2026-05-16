@@ -8,14 +8,14 @@ module "primary_aks" {
   resource_group_name = azurerm_resource_group.base.name
   location            = azurerm_resource_group.base.location
   default_node_pool = {
-    name       = "aksdefault"
-    node_count = 1
-    vm_size    = "Standard_D4s_v3"
+    name       = var.default_node_pool
+    node_count = var.node_count
+    vm_size    = var.vm_size
   }
   aks_info = {
-    name       = "web-aks"
-    dns_prefix = "azureaks"
+    name       = var.aks_name
+    dns_prefix = var.dns_prefix
   }
-  build_id = "1"
- depends_on = [ azurerm_resource_group.base ]
+  build_id   = var.build_id
+  depends_on = [azurerm_resource_group.base]
 }
