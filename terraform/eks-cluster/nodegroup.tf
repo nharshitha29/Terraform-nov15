@@ -20,6 +20,7 @@ resource "aws_eks_node_group" "nodegroup" {
     aws_iam_role_policy_attachment.example-AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.example-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.example-AmazonEC2ContainerRegistryReadOnly,
+    aws_eks_cluster.devops_cluster,
   ]
 }
 
