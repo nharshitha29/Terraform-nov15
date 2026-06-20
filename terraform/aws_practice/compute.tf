@@ -34,3 +34,18 @@ resource "aws_instance" "webservser" {
     create_before_destroy = true
   }
 }
+
+resource "aws_instance" "webservser1" {
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.instance.instance_type
+  vpc_security_group_ids      = [aws_security_group.sg.id]
+  subnet_id                   = aws_subnet.private[0].id
+  key_name                    = var.public_key.key_name
+  associate_public_ip_address = true
+  tags = {
+    Name = "ntier-web1"
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
